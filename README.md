@@ -124,31 +124,31 @@ Two aggregated reference tables were created using **Group By** in Power Query:
 ## 📊 Dashboard Screenshots
 
 ### 🖥️ Main Dashboard
-![Main Dashboard](Screenshots/Screenshot 2026-06-01 195927.png)
+![Main Dashboard](Screenshots/Screenshot%202026-06-01%20195927.png)
 > KPI cards for Total Patients, Total Billing, Avg Billing/Patient, Avg LOS · Top 10 Hospitals by Revenue · Monthly Admissions trend · Insurance distribution donut chart
 
 ---
 
 ### 🦠 Condition Summary Table (Power Query Output)
-![Condition Summary](Screenshots/Screenshot 2026-06-01 151003.png)
+![Condition Summary](Screenshots/Screenshot%202026-06-01%20151003.png)
 > Aggregated `Condition_Summary` table showing Patient Count, Avg Billing, and Avg Length of Stay per medical condition — built entirely via Power Query Group By.
 
 ---
 
 ### 🏦 Insurance Summary Table (Power Query Output)
-![Insurance Summary](Screenshots/Screenshot 2026-06-01 151033.png)
+![Insurance Summary](Screenshots/Screenshot%202026-06-01%20151033.png)
 > `Insurance_Summary` table showing Covered Patients, Total Claims, and Avg Claim per insurance provider — 100% valid, 0% errors.
 
 ---
 
 ### 🧑‍⚕️ Patient Detail Table with Slicers
-![Patient Table](Screenshots/Screenshot 2026-06-01 195955.png)
+![Patient Table](Screenshots/Screenshot%202026-06-01%20195955.png)
 > Drillable patient-level table filtered by Medical Condition and Admission Type — showing Age Category, Department, LOS, and Billing.
 
 ---
 
 ### 💰 Billing Tier by Department & Year
-![Billing Tier](Screenshots/Screenshot 2026-06-01 200025.png)
+![Billing Tier](Screenshots/Screenshot%202026-06-01%20200025.png)
 > Grouped bar chart showing Average Billing Amount segmented by Billing Tier (Standard / Silver / Gold / Platinum) across all 6 departments — filterable by Admission Year.
 
 ---

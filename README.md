@@ -46,29 +46,22 @@ This project transforms a **55,500-record healthcare dataset** from Kaggle into 
 
 The data was processed through a structured **Extract → Transform → Load** pipeline entirely inside **Power Query Editor** before modelling in Power BI.
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        ETL PIPELINE                                 │
-│                                                                     │
-│  📥 EXTRACT          🔧 TRANSFORM             📤 LOAD               │
-│  ──────────          ────────────             ──────                │
-│  Raw CSV        →    Power Query Editor   →   Power BI              │
-│  55,500 rows         ↓                        Data Model            │
-│  15 columns          • Fix Name Casing                              │
-│                      • Parse Dates                                  │
-│                      • Derive Age_Category                          │
-│                      • Calc Length_of_Stay                          │
-│                      • Add Billing_Tier                             │
-│                      • Merge Lookup Table                           │
-│                      • Validate / Remove errors                     │
-│                      ↓                                              │
-│              ┌──────────────────────────┐                          │
-│              │  Aggregated Summary       │                          │
-│              │  Tables (via Group By)    │                          │
-│              │  • Condition_Summary      │                          │
-│              │  • Insurance_Summary      │                          │
-│              └──────────────────────────┘                          │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    A[("📥 EXTRACT\n──────────\nRaw CSV\n55,500 rows\n15 columns")] --> B
+
+    subgraph B ["🔧 TRANSFORM — Power Query Editor"]
+        direction TB
+        B1[Fix Name Casing] --> B2[Parse Dates]
+        B2 --> B3[Derive Age_Category]
+        B3 --> B4[Calc Length_of_Stay]
+        B4 --> B5[Add Billing_Tier]
+        B5 --> B6[Merge Lookup Table]
+        B6 --> B7[Validate & Remove Errors]
+        B7 --> B8[(Group By\nCondition_Summary\nInsurance_Summary)]
+    end
+
+    B --> C[("📤 LOAD\n──────────\nPower BI\nData Model\n+ Dashboard")]
 ```
 
 ---
@@ -162,31 +155,48 @@ Two aggregated reference tables were created using **Group By** in Power Query:
 
 ## 📐 Data Model
 
-```
-┌─────────────────────────┐         ┌─────────────────────────┐
-│   healthcare_dataset     │         │  Condition_Dept_Lookup  │
-│  ───────────────────────│         │  ─────────────────────  │
-│  Name                   │◄────────│  Medical_Condition (PK) │
-│  Age                    │  Merge  │  Department             │
-│  Age_Category  [calc]   │         └─────────────────────────┘
-│  Gender                 │
-│  Medical Condition      │         ┌─────────────────────────┐
-│  Department   [merged]  │         │   Condition_Summary     │
-│  Date of Admission      │         │  ─────────────────────  │
-│  Admission_Year [calc]  │ Group   │  Medical_Condition      │
-│  Discharge Date         │──────►  │  Patient_Count          │
-│  Length_of_Stay [calc]  │  By     │  Avg_Billing            │
-│  Billing Amount         │         │  AVG_LOS                │
-│  Billing_Tier   [calc]  │         └─────────────────────────┘
-│  Insurance Provider     │
-│  Hospital               │         ┌─────────────────────────┐
-│  Admission Type         │         │   Insurance_Summary     │
-│  ...                    │ Group   │  ─────────────────────  │
-│                         │──────►  │  Insurance Provider     │
-└─────────────────────────┘  By     │  Covered_Patient        │
-                                     │  Total_Claims           │
-                                     │  Avg_Claim              │
-                                     └─────────────────────────┘
+```mermaid
+erDiagram
+    healthcare_dataset {
+        string Name
+        int Age
+        string Age_Category
+        string Gender
+        string Medical_Condition
+        string Department
+        date Date_of_Admission
+        int Admission_Year
+        date Discharge_Date
+        int Length_of_Stay
+        float Billing_Amount
+        string Billing_Tier
+        string Insurance_Provider
+        string Hospital
+        string Admission_Type
+    }
+
+    Condition_Dept_Lookup {
+        string Medical_Condition PK
+        string Department
+    }
+
+    Condition_Summary {
+        string Medical_Condition
+        int Patient_Count
+        float Avg_Billing
+        float AVG_LOS
+    }
+
+    Insurance_Summary {
+        string Insurance_Provider
+        int Covered_Patient
+        float Total_Claims
+        float Avg_Claim
+    }
+
+    healthcare_dataset ||--|| Condition_Dept_Lookup : "Merge on Medical_Condition"
+    healthcare_dataset ||--o{ Condition_Summary : "Group By"
+    healthcare_dataset ||--o{ Insurance_Summary : "Group By"
 ```
 
 ---

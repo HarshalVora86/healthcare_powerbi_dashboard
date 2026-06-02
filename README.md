@@ -6,6 +6,7 @@
 [![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
 [![Dataset](https://img.shields.io/badge/Dataset-55%2C500%20Records-blue?style=for-the-badge)](https://www.kaggle.com/)
 [![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)]()
+[![Watch Demo](https://img.shields.io/badge/▶%20Watch-Project%20Demo-red?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1TiWYDvqGLxanVKcoBnoyNul3UcOkM214/view?usp=drive_link)
 
 ---
 

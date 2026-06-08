@@ -12,7 +12,6 @@
 ## 🎬 Demo
 
 > 📽️ Full walkthrough video → [Watch healthcare_dashboard.mp4](https://drive.google.com/file/d/1TiWYDvqGLxanVKcoBnoyNul3UcOkM214/view?usp=sharing)
-
 ---
 
 ## 📌 Project Overview

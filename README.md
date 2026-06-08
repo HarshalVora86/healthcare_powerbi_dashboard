@@ -10,6 +10,14 @@
 
 ---
 
+## 🎬 Demo
+
+> 📽️ Click below to watch the full dashboard walkthrough
+
+[![Watch Demo](https://img.shields.io/badge/▶%20Watch-Dashboard%20Demo-red?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1TiWYDvqGLxanVKcoBnoyNul3UcOkM214/view?usp=sharing)
+
+---
+
 ## 📌 Project Overview
 
 This project transforms a **55,500-record healthcare dataset** from Kaggle into a fully interactive Power BI dashboard. It covers the complete analytics workflow — from raw data ingestion to business-ready insights — focused on patient demographics, billing analysis, hospital performance, and insurance provider distribution.
